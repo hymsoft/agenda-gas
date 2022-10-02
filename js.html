@@ -4,6 +4,11 @@
 <script>
   function crearTablaContactos() {
     console.clear();
+    // Borro la tabla si existe
+    eliminarTabla();
+    // Creo el loader de carga
+    crearLoaderRing("divContactos")
+    // Obtengo los contactos, si es ok, creo la tabla, sino, devuelvo error
     google.script.run
       .withSuccessHandler(crearTablaContactosOK)
       .withFailureHandler(crearTablaCotactosError)
@@ -12,9 +17,6 @@
 
   function crearTablaContactosOK(obj) {
     // Creo la tabla y el body
-    let tabla = document.getElementById("tablaContactos");
-    if (tabla) tabla.remove();
-
     tabla = document.createElement("table");
     tabla.id = "tablaContactos";
 
@@ -51,11 +53,20 @@
 
     // Mostrar notificacion de OK
     crearNotificacionOK("Contactos obtenidos correctamente", "OK");
+    // Elimino el loader
+    eliminarLoader();
   }
 
   function crearTablaCotactosError() {
     // Mostrar notificacion de error
     crearNotificacionError("No se pudieron obtener los contactos", "ERROR");
+    // Elimino el loader
+    eliminarLoader();
+  }
+
+  function eliminarTabla(){
+    let tabla = document.getElementById("tablaContactos");
+    if (tabla) tabla.remove();
   }
 
   function crearNotificacion(mensaje,titulo){
@@ -99,5 +110,33 @@ crearNotificacion(mensaje,titulo);
   function crearColorNotificacion(color){
     let elementoNotificacion = document.getElementById('notificacion');
     elementoNotificacion.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(color);
+  }
+
+  function crearLoader(elementoPadre){
+    eliminarLoader();
+    //Creo el elemento
+    let loader = document.createElement("div");
+    loader.id = "loader";
+    
+    loader.appendChild(document.createElement("div"));
+    loader.appendChild(document.createElement("div"));
+    loader.appendChild(document.createElement("div"));
+    loader.appendChild(document.createElement("div"));
+    return document.getElementById(elementoPadre).appendChild(loader);
+  }
+
+  function crearLoaderRing(elementoPadre){
+    let loader = crearLoader(elementoPadre);
+    loader.classList.add("lds-ring");
+  }
+
+  function crearLoaderEllipsis(elementoPadre){
+    let loader = crearLoader(elementoPadre);
+    loader.classList.add("lds-ellipsis");
+  }
+
+  function eliminarLoader(){
+    let loader = document.getElementById("loader");
+    if(loader) loader.remove();
   }
 </script>
