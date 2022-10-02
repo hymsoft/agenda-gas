@@ -2,6 +2,10 @@
   integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
 <script>
+  const NOTIFICACION_OK = 1;
+  const NOTIFICACION_DANGER = 2;
+  const NOTIFICACION_WARNING = 3;
+
   function crearTablaContactos() {
     console.clear();
     google.script.run
@@ -44,16 +48,18 @@
       "table-hover",
       "table-striped",
       "border",
-      "border-3"
+      "border-4",
+      "border-dark"
     );
     document.getElementById("divContactos").appendChild(tabla);
 
     // Mostrar notificacion de OK
-    crearNotificacion(1, "Contactos obtenidos correctamente", "OK");
+    crearNotificacion(NOTIFICACION_OK, "Contactos obtenidos correctamente", "OK");
   }
 
   function crearTablaCotactosError() {
     // Mostrar notificacion de error
+    crearNotificacion(NOTIFICACION_DANGER, "No se pudieron obtener los contactos", "ERROR");
   }
 
   function crearNotificacion(tipo, mensaje, titulo) {
@@ -64,11 +70,29 @@
     let notificacion = bootstrap.Toast.getOrCreateInstance(elementoNotificacion);
 
     //editar la notificación
-    iconoNotificacion.className = '';
-    iconoNotificacion.classList.add('bi','bi-check2-square');
     mensajeNotificacion.textContent = mensaje;
     tituloNotificacion.textContent = titulo;
-    elementoNotificacion.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-verde-oscuro');
+  
+    switch(tipo){
+      case NOTIFICACION_OK:
+        iconoNotificacion.className = '';
+        iconoNotificacion.classList.add('bi','bi-check2-square');
+        elementoNotificacion.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-verde-oscuro');
+        break;
+      case NOTIFICACION_DANGER:
+        iconoNotificacion.className = '';
+        iconoNotificacion.classList.add('bi','bi-bug');
+        elementoNotificacion.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-rojo-oscuro');
+        break;
+      case NOTIFICACION_WARNING:
+        iconoNotificacion.className = '';
+        iconoNotificacion.classList.add('bi','bi-exclamation-square');
+        elementoNotificacion.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-amarillo-oscuro');
+        break;
+    }
+  
+
+
 
     //mostrar notificación
     notificacion.show();
