@@ -1,51 +1,76 @@
-<script
-  src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-  crossorigin="anonymous"
-></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
 <script>
   function crearTablaContactos() {
     console.clear();
     google.script.run
-      .withSuccessHandler((obj) => {
-        // Creo la tabla y el body
-        let tabla = document.getElementById("tablaContactos");
-        if (tabla) tabla.remove();
-
-        tabla = document.createElement("table");
-        tabla.id = "tablaContactos";
-
-        let tablaHeader = document.createElement("thead");
-        let tablaBody = document.createElement("tbody");
-        Array.from(obj).forEach((filaActual, i) => {
-          // Creo la fila
-          let fila = document.createElement("tr");
-          //incerto las columnas
-          filaActual.forEach((columnaActual) => {
-            //creo la columna
-            columna = document.createElement("td");
-            columna.textContent = columnaActual;
-            fila.appendChild(columna);
-          });
-          if (i == 0) {
-            tablaHeader.appendChild(fila);
-            tabla.appendChild(tablaHeader);
-          } else {
-            tablaBody.appendChild(fila);
-          }
-        });
-        tablaHeader.classList.add("table-dark", "fw-bold");
-        tabla.appendChild(tablaBody);
-        tabla.classList.add(
-          "table",
-          "table-hover",
-          "table-striped",
-          "border",
-          "border-3"
-        );
-        document.getElementById("divContactos").appendChild(tabla);
-      })
+      .withSuccessHandler(crearTablaContactosOK)
+      .withFailureHandler(crearTablaCotactosError)
       .obtenerContactos();
+  }
+
+  function crearTablaContactosOK(obj) {
+    // Creo la tabla y el body
+    let tabla = document.getElementById("tablaContactos");
+    if (tabla) tabla.remove();
+
+    tabla = document.createElement("table");
+    tabla.id = "tablaContactos";
+
+    let tablaHeader = document.createElement("thead");
+    let tablaBody = document.createElement("tbody");
+    Array.from(obj).forEach((filaActual, i) => {
+      // Creo la fila
+      let fila = document.createElement("tr");
+      //incerto las columnas
+      filaActual.forEach((columnaActual) => {
+        //creo la columna
+        columna = document.createElement("td");
+        columna.textContent = columnaActual;
+        fila.appendChild(columna);
+      });
+      if (i == 0) {
+        tablaHeader.appendChild(fila);
+        tabla.appendChild(tablaHeader);
+      } else {
+        tablaBody.appendChild(fila);
+      }
+    });
+    tablaHeader.classList.add("table-dark", "fw-bold");
+    tabla.appendChild(tablaBody);
+    tabla.classList.add(
+      "table",
+      "table-hover",
+      "table-striped",
+      "border",
+      "border-3"
+    );
+    document.getElementById("divContactos").appendChild(tabla);
+
+    // Mostrar notificacion de OK
+    crearNotificacion(1, "Contactos obtenidos correctamente", "OK");
+  }
+
+  function crearTablaCotactosError() {
+    // Mostrar notificacion de error
+  }
+
+  function crearNotificacion(tipo, mensaje, titulo) {
+    let mensajeNotificacion = document.getElementById('mensajeNotificacion');
+    let tituloNotificacion = document.getElementById('tituloNotificacion');
+    let elementoNotificacion = document.getElementById('notificacion');
+    let iconoNotificacion = document.getElementById('iconoNotificacion');
+    let notificacion = bootstrap.Toast.getOrCreateInstance(elementoNotificacion);
+
+    //editar la notificación
+    iconoNotificacion.className = '';
+    iconoNotificacion.classList.add('bi','bi-check2-square');
+    mensajeNotificacion.textContent = mensaje;
+    tituloNotificacion.textContent = titulo;
+    elementoNotificacion.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-verde-oscuro');
+
+    //mostrar notificación
+    notificacion.show();
   }
 </script>
