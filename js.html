@@ -2,6 +2,44 @@
   integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
 <script>
+  function insertarContacto() {
+    console.clear();
+    // Obtengo los datos del formulario
+    let nombre = document.getElementById("nombre").value;
+    let correo = document.getElementById("correo").value;
+    
+    // Creo el loader de carga
+    crearLoaderRing("divContactos")
+    // Obtengo los contactos, si es ok, creo la tabla, sino, devuelvo error
+    google.script.run
+      .withSuccessHandler(contactoInsertadoOK)
+      .withFailureHandler(contactoInsertadoError)
+      .insertarContacto(nombre,correo);
+  }
+
+  function contactoInsertadoOK(){
+    // Limpio datos del formulario
+    document.getElementById("nombre").value = "";
+    document.getElementById("correo").value = "";
+    // Elimino la tabla
+    eliminarTabla();
+    // Muestro el mensaje
+    crearNotificacionOK("Contactos insertado correctamente", "OK");
+    //Muestro la tabla
+    crearTablaContactos();
+    // Elimino el loader
+    eliminarLoader();
+  }
+
+  function contactoInsertadoError(){
+    // Mostrar notificacion de error
+    crearNotificacionError("No se pudo insertar el contactos", "ERROR");
+    //Muestro la tabla
+    crearTablaContactos();
+    // Elimino el loader
+    eliminarLoader(); 
+  }
+
   function crearTablaContactos() {
     console.clear();
     // Borro la tabla si existe
@@ -11,7 +49,7 @@
     // Obtengo los contactos, si es ok, creo la tabla, sino, devuelvo error
     google.script.run
       .withSuccessHandler(crearTablaContactosOK)
-      .withFailureHandler(crearTablaCotactosError)
+      .withFailureHandler(crearTablaContactosError)
       .obtenerContactos();
   }
 
@@ -57,7 +95,7 @@
     eliminarLoader();
   }
 
-  function crearTablaCotactosError() {
+  function crearTablaContactosError() {
     // Mostrar notificacion de error
     crearNotificacionError("No se pudieron obtener los contactos", "ERROR");
     // Elimino el loader
