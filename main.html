@@ -34,7 +34,7 @@
   <!-- Modal -->
   <div class="modal fade" id="crearContactoModal" tabindex="-1" aria-labelledby="tituloCrearContactoModal"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-lg modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="tituloCrearContactoModal">Modal title</h1>
@@ -43,13 +43,23 @@
         <!-- Formulario -->
         <form onsubmit="insertarContacto()" method="dialog" id="formulario">
           <div class="modal-body">
-            <div class="mb-3">
-              <label for="nombre" class="form-label">Contacto:</label>
-              <input type="text" class="form-control" name="nombre" id="nombre" required>
+            <!-- Nombre y Apellido -->
+            <div class="row mb-3">
+              <div class="col-6">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" pattern="[\D]*" title="El nombre no puede contener números" required>
+              </div>
+              <div class="col-6">
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" class="form-control" name="apellido" id="apellido" pattern="[\D]*" title="El apellido no puede contener números" required>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="correo" class="form-label">Email:</label>
-              <input type="email" class="form-control" name="correo" id="correo" required>
+            <!-- Correo y teléfono -->
+            <div class="input-group mb-3">
+              <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+              <input type="email" class="form-control me-4" name="correo" id="correo" required>
+              <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+              <input type="tel" class="form-control" name="telefono" id="telefono" required>
             </div>
           </div>
           <div class="modal-footer">
