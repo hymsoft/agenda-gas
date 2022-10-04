@@ -7,9 +7,16 @@
     // Obtengo los datos del formulario
     let nombre = document.getElementById("nombre").value;
     let correo = document.getElementById("correo").value;
+
+    // Cerrar el modal
+    bootstrap.Modal.getInstance(document.getElementById("crearContactoModal")).hide();
+    
+    // Eliminar la tabla
+    eliminarTabla();
     
     // Creo el loader de carga
     crearLoaderRing("divContactos")
+    
     // Obtengo los contactos, si es ok, creo la tabla, sino, devuelvo error
     google.script.run
       .withSuccessHandler(contactoInsertadoOK)
