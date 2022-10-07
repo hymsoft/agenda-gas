@@ -19,9 +19,14 @@ function obtenerDatosHTML(nombre) {
 }
 
 function obtenerContactos() {
+  // obtiene todo los datos de una hoja
   return HOJA.getDataRange().getValues();
 }
 
 function insertarContacto(nombre, apellido, correo, telefono) {
   HOJA.appendRow([nombre, apellido, correo, telefono]);
+}
+
+function eliminarContacto(nFila){
+  HOJA.deleteRow(nFila);
 }

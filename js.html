@@ -3,7 +3,6 @@
 
 <script>
   function insertarContacto() {
-    console.clear();
     // Obtengo los datos del formulario
     let nombre = document.getElementById("nombre").value;
     let apellido = document.getElementById("apellido").value;
@@ -50,7 +49,6 @@
   }
 
   function crearTablaContactos() {
-    console.clear();
     // Borro la tabla si existe
     eliminarTabla();
     // Creo el loader de carga
@@ -69,25 +67,40 @@
 
     let tablaHeader = document.createElement("thead");
     let tablaBody = document.createElement("tbody");
-    Array.from(obj).forEach((filaActual, i) => {
-      // Creo la fila
+
+    // Header de la tabla
+    let fila = document.createElement("tr");
+    for(let i = 0;i < obj[0].length;i++){
+      let celda = document.createElement("td");
+      celda.textContent = obj[0][i];
+      fila.appendChild(celda);
+    }
+    // Agrego la columna opciones
+    celdaOpciones = document.createElement("td");
+    celdaOpciones.textContent = "OPCIONES";
+    celdaOpciones.classList.add("text-center");
+    fila.appendChild(celdaOpciones);
+    // Agrego la fila al header y el header a la tabla
+    tablaHeader.appendChild(fila);
+    tabla.appendChild(tablaHeader);
+
+    // Body de la tabla
+    for(let i = 1;i < obj.length;i++){
       let fila = document.createElement("tr");
-      //incerto las columnas
-      filaActual.forEach((columnaActual) => {
-        //creo la columna
-        columna = document.createElement("td");
-        columna.textContent = columnaActual;
-        fila.appendChild(columna);
-      });
-      if (i == 0) {
-        tablaHeader.appendChild(fila);
-        tabla.appendChild(tablaHeader);
-      } else {
-        tablaBody.appendChild(fila);
+      for(let j=0;j<obj[i].length;j++){
+        let celda = document.createElement("td");
+        celda.textContent = obj[i][j];
+        fila.appendChild(celda);
       }
-    });
+      // Agrego los botones de opciones
+      fila.appendChild(crearBotonesOpciones(i+1));
+      tablaBody.appendChild(fila);
+    }
+    // Agrego clases al header
     tablaHeader.classList.add("table-dark", "fw-bold");
+    // Agrego el body a la tabla
     tabla.appendChild(tablaBody);
+    // Agrego clases a la tabla
     tabla.classList.add(
       "table",
       "table-hover",
@@ -96,12 +109,67 @@
       "border-4",
       "border-dark"
     );
+    // Agrego la tabla a la pagina
     document.getElementById("divContactos").appendChild(tabla);
 
     // Mostrar notificacion de OK
     crearNotificacionOK("Contactos obtenidos correctamente", "OK");
     // Elimino el loader
     eliminarLoader();
+  }
+
+  function crearBotonesOpciones(nFila){
+    let celda = document.createElement("td");
+    celda.classList.add("text-center");
+    // Creo el boton de borrar
+    let btnBorrar = document.createElement("button");
+    btnBorrar.onclick = () => borrarContacto(nFila);
+    btnBorrar.classList.add("btn","btn-danger","m-1");
+    let iconoBorrar = document.createElement("i");
+    iconoBorrar.classList.add("bi","bi-trash");
+    btnBorrar.appendChild(iconoBorrar);
+    // Creo el boton modificar
+    let btnModificar = document.createElement("button");
+    btnModificar.onclick = () => modificarContacto(nFila);
+    btnModificar.classList.add("btn","btn-warning","m-1");
+    let iconoModificar = document.createElement("i");
+    iconoModificar.classList.add("bi","bi-pencil-square");
+    btnModificar.appendChild(iconoModificar);
+    // Agrego los botones a la celda
+    celda.appendChild(btnBorrar);
+    celda.appendChild(btnModificar);
+    return celda;
+  }
+
+  function borrarContacto(nFila){
+     // Eliminar la tabla
+    eliminarTabla();
+    // Creo el loader de carga
+    crearLoaderRing("divContactos")
+    
+    // Borro el contacto, si es ok, creo la tabla, sino, devuelvo error
+    google.script.run
+      .withSuccessHandler(contactoBorradoOk)
+      .withFailureHandler(contactoBorradoError)
+      .eliminarContacto(nFila);
+  }
+
+ function contactoBorradoOk() {
+    eliminarTabla();
+    // Mostrar notificacion
+    crearNotificacionOK("Contacto eliminado correctamente", "OK");
+    // Elimino el loader
+    eliminarLoader();
+    crearTablaContactos();
+  }
+
+ function contactoBorradoError() {
+    eliminarTabla();
+    // Mostrar notificacion de error
+    crearNotificacionError("No se pudo borrar el contacto", "ERROR");
+    // Elimino el loader
+    eliminarLoader();
+    crearTablaContactos();
   }
 
   function crearTablaContactosError() {
