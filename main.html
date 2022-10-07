@@ -2,20 +2,40 @@
   <!-- Botones superiores -->
   <div class="d-flex justify-content-center my-3">
     <!-- Botones -->
-    <button type="button" class="btn btn-success m-2" onclick="crearTablaContactos()">Mostrar contactos</button>
-    <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#crearContactoModal">Nuevo Contacto</button>
+    <button
+      type="button"
+      class="btn btn-success m-2"
+      onclick="crearTablaContactos()"
+    >
+      Mostrar contactos
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary m-2"
+      onclick="abrirModalNuevoContacto()"
+    >
+      Nuevo Contacto
+    </button>
   </div>
   <!-- Fin Botones Superiores -->
 
   <!-- Tabla de contactos -->
-  <div class="container col-12 col-lg-6 mb-4 d-flex justify-content-center" id="divContactos"></div>
+  <div
+    class="container col-12 col-lg-6 mb-4 d-flex justify-content-center"
+    id="divContactos"
+  ></div>
   <!-- Fin tabla de contactos -->
 
   <!-- Notificaciones -->
   <div class="toast-container position-fixed bottom-0 end-0 p-3">
     <!-- Toast -->
-    <div id="notificacion" class="toast align-items-center border-0" role="alert" aria-live="assertive"
-      aria-atomic="true">
+    <div
+      id="notificacion"
+      class="toast align-items-center border-0"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
       <div class="toast-header P-0">
         <div class="icono-notificacion"><i id="iconoNotificacion"></i></div>
         <strong class="me-auto" id="tituloNotificacion"></strong>
@@ -32,39 +52,88 @@
   <!-- fin Notificaciones -->
 
   <!-- Modal -->
-  <div class="modal fade" id="crearContactoModal" tabindex="-1" aria-labelledby="tituloCrearContactoModal"
-    aria-hidden="true">
+  <div
+    class="modal fade"
+    id="modalContacto"
+    tabindex="-1"
+    aria-labelledby="tituloModal"
+    aria-hidden="true"
+  >
     <div class="modal-lg modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="tituloCrearContactoModal">Modal title</h1>
+          <h1 class="modal-title fs-5" id="tituloModal">Agregar Contacto</h1>
           <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>
         <!-- Formulario -->
-        <form onsubmit="insertarContacto()" method="dialog" id="formulario">
+        <form onsubmit="insertarContacto()" method="dialog" id="frmContacto">
           <div class="modal-body">
             <!-- Nombre y Apellido -->
             <div class="row mb-3">
               <div class="col-6">
                 <label for="nombre" class="form-label">Nombre:</label>
-                <input type="text" class="form-control" name="nombre" id="nombre" pattern="[\D]*" title="El nombre no puede contener números" required>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="nombre"
+                  id="nombre"
+                  pattern="[\D]*"
+                  title="El nombre no puede contener números"
+                  required
+                />
               </div>
               <div class="col-6">
                 <label for="apellido" class="form-label">Apellido:</label>
-                <input type="text" class="form-control" name="apellido" id="apellido" pattern="[\D]*" title="El apellido no puede contener números" required>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="apellido"
+                  id="apellido"
+                  pattern="[\D]*"
+                  title="El apellido no puede contener números"
+                  required
+                />
               </div>
             </div>
             <!-- Correo y teléfono -->
             <div class="input-group mb-3">
-              <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-              <input type="email" class="form-control me-4" name="correo" id="correo" required>
-              <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
-              <input type="tel" class="form-control" name="telefono" id="telefono" required>
+              <span class="input-group-text"
+                ><i class="bi bi-envelope-fill"></i
+              ></span>
+              <input
+                type="email"
+                class="form-control me-4"
+                name="correo"
+                id="correo"
+                required
+              />
+              <span class="input-group-text"
+                ><i class="bi bi-telephone-fill"></i
+              ></span>
+              <input
+                type="tel"
+                class="form-control"
+                name="telefono"
+                id="telefono"
+                required
+              />
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-success">Crear contacto</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button
+              id="btnCrearModificar"
+              type="submit"
+              class="btn btn-success"
+            >
+              Crear contacto
+            </button>
           </div>
         </form>
         <!-- fin formulario -->
@@ -72,6 +141,4 @@
     </div>
   </div>
   <!-- Fin modal -->
-
-
 </main>
