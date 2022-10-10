@@ -44,6 +44,15 @@
         let celda = document.createElement("td");
         celda.textContent = obj[i][j];
         fila.appendChild(celda);
+        // Si es la ubicacion de la imagen
+        if(j==4){
+          // Muestro la imagen
+          celda.textContent = "";
+          let imagen = document.createElement("img");
+          imagen.classList.add("img-fluid","rounded");
+          imagen.src = obj[i][j];
+          celda.appendChild(imagen);
+        }
       }
       // Agrego los botones de opciones
       fila.appendChild(crearBotonesOpciones(i + 1, obj[i]));

@@ -23,8 +23,8 @@ function obtenerContactos() {
   return HOJA.getDataRange().getValues();
 }
 
-function insertarContacto(nombre, apellido, correo, telefono) {
-  HOJA.appendRow([nombre, apellido, correo, telefono]);
+function insertarContacto(nombre, apellido, correo, telefono,fotografia) {
+  HOJA.appendRow([nombre, apellido, correo, telefono,fotografia]);
 }
 
 function eliminarContacto(nFila){
@@ -37,7 +37,7 @@ function modificarContacto(nFila,datos){
 }
 
 function importarContactos(){
-  let url = "https://randomuser.me/api/?results=5&nat=es&inc=name,email,phone";
+  let url = "https://randomuser.me/api/?results=5&nat=es&inc=name,email,phone,picture";
   let respuesta = UrlFetchApp.fetch(url).getContentText();
   let datos = JSON.parse(respuesta);
   datos.results.forEach(contacto => insertarContactoImportado(contacto));
@@ -48,8 +48,9 @@ function insertarContactoImportado(contacto){
   let apellido = contacto.name.last;
   let correo = contacto.email;
   let telefono = contacto.phone;
+  let fotografia = contacto.picture.medium;
 
-  insertarContacto(nombre,apellido,correo,telefono);
+  insertarContacto(nombre,apellido,correo,telefono,fotografia);
 }
 
 
