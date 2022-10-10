@@ -67,7 +67,7 @@
 
     // Mostrar notificacion de OK
     // crearNotificacionOK("Contactos obtenidos correctamente", "OK");
-
+    
     // Elimino el loader
     eliminarLoader();
   }
@@ -277,171 +277,6 @@
     if (tabla) tabla.remove();
   }
 
-  // ********************************* [ Notificaciones ]*******************************
-
-  // Iconos para las notificaciones
-  const ICONO_CHECK = "bi-check-square";
-  const ICONO_PAPELERA = "bi-trash";
-  const ICONO_CONTACTO = "bi-person-plus-fill";
-  const ICONO_ERROR = "bi-bug";
-  const ICONO_ADVERTENCIA = "bi-exclamation-square";
-
-  const LOTTIE_CHECK =
-    "https://assets3.lottiefiles.com/private_files/lf30_dfspihm8.json";
-  const LOTTIE_PAPELERA =
-    "https://assets8.lottiefiles.com/packages/lf20_WcyRdM.json";
-  const LOTTIE_CONTACTO =
-    "https://assets8.lottiefiles.com/packages/lf20_sOjs8q/add_contact_05.json";
-  const LOTTIE_ERROR =
-    "https://assets8.lottiefiles.com/packages/lf20_yw3nyrsv.json";
-  const LOTTIE_ADVERTENCIA =
-    "https://assets8.lottiefiles.com/packages/lf20_qbuxqwzg.json";
-
-  // function crearNotificacionOK(titulo,mensaje){crearNotificacion(titulo,mensaje,ICONO_CHECK,'--color-verde-oscuro')};
-  // function crearNotificacionError(titulo,mensaje){crearNotificacion(titulo,mensaje,ICONO_ERROR,'--color-rojo-oscuro')};
-  // function crearNotificacionContacto(titulo,mensaje){crearNotificacion(titulo,mensaje,ICONO_CONTACTO,'--color-azul-oscuro')};
-  // function crearNotificacionAdvertencia(titulo,mensaje){crearNotificacion(titulo,mensaje,ICONO_ADVERTENCIA,'--color-amarillo-oscuro')};
-  // function crearNotificacionBorrar(titulo,mensaje){crearNotificacion(titulo,mensaje,ICONO_PAPELERA,'--color-gris-oscuro')};
-  function crearNotificacionOK(titulo, mensaje) {
-    crearNotificacion(titulo, mensaje, LOTTIE_CHECK, "--color-verde-oscuro");
-  }
-  function crearNotificacionError(titulo, mensaje) {
-    crearNotificacion(titulo, mensaje, LOTTIE_ERROR, "--color-rojo-oscuro");
-  }
-  function crearNotificacionContacto(titulo, mensaje) {
-    crearNotificacion(titulo, mensaje, LOTTIE_CONTACTO, "--color-azul-oscuro");
-  }
-  function crearNotificacionAdvertencia(titulo, mensaje) {
-    crearNotificacion(
-      titulo,
-      mensaje,
-      LOTTIE_ADVERTENCIA,
-      "--color-amarillo-oscuro"
-    );
-  }
-  function crearNotificacionBorrar(titulo, mensaje) {
-    crearNotificacion(titulo, mensaje, LOTTIE_PAPELERA, "--color-gris-oscuro");
-  }
-
-  // function crearNotificacion(mensaje,titulo,icono,color){
-  //   let notificacion = crearAtributosNotificacion();
-  //   let notificacionHead = crearHeadNotificacion(titulo,icono);
-  //   let notificacionBody = crearBodyNotificacion(mensaje);
-
-  //   // Agrego el head y el body a la notificacion
-  //   notificacion.appendChild (notificacionHead);
-  //   notificacion.appendChild(notificacionBody);
-  //   // Establezco el color
-  //   notificacion.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue(color);
-
-  //   // Evento
-  //   notificacion.addEventListener("hidden.bs.toast", function() {this.remove();});
-
-  //   // Agrego al contenedor de notificaciones
-  //   document.getElementById("contenedorNotificaciones").appendChild(notificacion);
-
-  //   // Instancio y muestro la notificacion
-  //   console.log(notificacion)
-  //   bootstrap.Toast.getOrCreateInstance(notificacion).show();
-  // }
-  function crearNotificacion(mensaje, titulo, lottie, color) {
-    let notificacion = crearAtributosNotificacion();
-    let notificacionHead = crearHeadNotificacion(titulo, lottie);
-    let notificacionBody = crearBodyNotificacion(mensaje);
-
-    // Agrego el head y el body a la notificacion
-    notificacion.appendChild(notificacionHead);
-    notificacion.appendChild(notificacionBody);
-    // Establezco el color
-    notificacion.style.backgroundColor = getComputedStyle(
-      document.documentElement
-    ).getPropertyValue(color);
-
-    // Evento
-    notificacion.addEventListener("hidden.bs.toast", function () {
-      this.remove();
-    });
-
-    // Agrego al contenedor de notificaciones
-    document
-      .getElementById("contenedorNotificaciones")
-      .appendChild(notificacion);
-
-    // Instancio y muestro la notificacion
-    console.log(notificacion);
-    bootstrap.Toast.getOrCreateInstance(notificacion).show();
-  }
-
-  // function crearHeadNotificacion(titulo,icono){
-  //   let notificacionHead = document.createElement("div");
-  //   notificacionHead.classList.add("toast-header","p-0");
-  //   crearIconoNotificacion(notificacionHead,icono);
-  //   let notificacionTitulo = document.createElement("strong");
-  //   notificacionTitulo.classList.add("mx-2");
-  //   notificacionTitulo.textContent = titulo;
-  //   notificacionHead.appendChild(notificacionTitulo);
-  //   return notificacionHead;
-  // }
-
-  function crearHeadNotificacion(titulo, lottie) {
-    let notificacionHead = document.createElement("div");
-    notificacionHead.classList.add("toast-header", "p-0");
-    crearLottieNotificacion(notificacionHead, lottie);
-    let notificacionTitulo = document.createElement("strong");
-    notificacionTitulo.classList.add("mx-2");
-    notificacionTitulo.textContent = titulo;
-    notificacionHead.appendChild(notificacionTitulo);
-    return notificacionHead;
-  }
-
-  function crearBodyNotificacion(mensaje) {
-    let notificacionBody = document.createElement("div");
-    notificacionBody.classList.add("toast-body");
-    notificacionBody.textContent = mensaje;
-    return notificacionBody;
-  }
-
-  function crearIconoNotificacion(contenedor, icono) {
-    //Creo el contenedor para el icono
-    let contenedorIcono = document.createElement("div");
-    contenedorIcono.classList.add("icono-notificacion");
-    let notificacionIcono = document.createElement("i");
-    notificacionIcono.classList.add("bi", icono);
-    contenedorIcono.appendChild(notificacionIcono);
-    contenedor.appendChild(contenedorIcono);
-  }
-
-  function crearLottieNotificacion(contenedor, lottie) {
-    //Creo el contenedor para el icono
-    let contenedorIcono = document.createElement("div");
-    let notificacionIcono = document.createElement("lottie-player");
-    // Atributos del Lottie
-    notificacionIcono.setAttribute("src", lottie);
-    notificacionIcono.setAttribute("background", "transparent");
-    notificacionIcono.setAttribute("speed", 1);
-    notificacionIcono.setAttribute("speed", 1);
-    notificacionIcono.style.width = "3rem";
-    notificacionIcono.style.height = "3rem";
-    notificacionIcono.autoplay = true;
-    contenedorIcono.appendChild(notificacionIcono);
-    contenedor.appendChild(contenedorIcono);
-  }
-
-  function crearAtributosNotificacion() {
-    let notificacion = document.createElement("div");
-    notificacion.classList.add(
-      "toast",
-      "align-items-center",
-      "text-white",
-      "border-0"
-    );
-    notificacion.setAttribute("role", "alert");
-    notificacion.setAttribute("aria-live", "assertive");
-    notificacion.setAttribute("aria-atomic", "true");
-
-    return notificacion;
-  }
-
   // ********************************* [ Loader ]*******************************
 
   function crearLoader(elementoPadre) {
@@ -470,5 +305,31 @@
   function eliminarLoader() {
     let loader = document.getElementById("loader");
     if (loader) loader.remove();
+  }
+
+ // ********************************* [ Importar contactos de api externa ]*******************************
+  function importarContactos(){
+    google.script.run
+      .withSuccessHandler(contactoImportadoOk)
+      .withFailureHandler(contactoImportadoError)
+      .importarContactos();
+  }
+
+  function contactoImportadoOk() {
+    eliminarTabla();
+    // Mostrar notificacion
+    crearNotificacionContacto("Contactos importados correctamente", "OK");
+    // Elimino el loader
+    eliminarLoader();
+    crearTablaContactos();
+  }
+
+  function contactoImportadoError() {
+    eliminarTabla();
+    // Mostrar notificacion de error
+    crearNotificacionContacto("No se pudieron importar los contactos", "ERROR");
+    // Elimino el loader
+    eliminarLoader();
+    crearTablaContactos();
   }
 </script>

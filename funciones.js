@@ -35,3 +35,22 @@ function modificarContacto(nFila,datos){
   let celdas  = HOJA.getRange(nFila, 1, 1, HOJA.getLastColumn() );
   celdas.setValues([[datos.nombre,datos.apellido,datos.correo,datos.telefono]]);  
 }
+
+// function importarContactos(){
+//   let url = "https://randomuser.me/api/?results=5&nat=es&inc=name,email,phone";
+//   let respuesta = UrlFetchApp.fetch(url).getContentText();
+//   let datos = JSON.parse(respuesta);
+//   datos.results.forEach(contacto => insertarContactoImportado(contacto));
+// }
+
+// function insertarContactoImportado(contacto){
+//   let nombre = contacto.name.first;
+//   let apellido = contacto.name.last;
+//   let correo = contacto.email;
+//   let telefono = contacto.phone;
+
+//   insertarContacto(nombre,apellido,correo,telefono);
+// }
+
+
+
