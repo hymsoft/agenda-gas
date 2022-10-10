@@ -341,4 +341,19 @@
     eliminarLoader();
     crearTablaContactos();
   }
+
+ // ********************************* [ Boton para subir al principio de la pagina ]*******************************
+ window.addEventListener("scroll",function(){
+   if(this.window.scrollY > 500){
+     document.getElementById("btnGoUp").style.transform = "scale(1)";
+   }
+   if(this.window.scrollY < 500){
+     document.getElementById("btnGoUp").style.transform = "scale(0)";
+   }
+ });
+
+ function goUp(){
+   document.body.scrollTop = 0;
+   document.documentElement.scrollTop = 0;
+ }
 </script>
