@@ -32,7 +32,7 @@ function eliminarContacto(nFila){
 }
 
 function modificarContacto(nFila,datos){
-  let celdas  = HOJA.getRange(nFila, 1, 1, HOJA.getLastColumn() );
+  let celdas  = HOJA.getRange(nFila, 1, 1, HOJA.getLastColumn()-1 );
   celdas.setValues([[datos.nombre,datos.apellido,datos.correo,datos.telefono]]);  
 }
 
@@ -48,7 +48,7 @@ function insertarContactoImportado(contacto){
   let apellido = contacto.name.last;
   let correo = contacto.email;
   let telefono = contacto.phone;
-  let fotografia = contacto.picture.medium;
+  let fotografia = contacto.picture.large;
 
   insertarContacto(nombre,apellido,correo,telefono,fotografia);
 }

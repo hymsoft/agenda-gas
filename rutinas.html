@@ -1,0 +1,36 @@
+<script>
+
+let VistaActual = "";
+
+// ********************************* [ Limpiar ]*******************************
+function limpiar(){
+  // Elimino la tabla de contactos
+  eliminarTablaContactos();
+  // Elimino las tarjetas de contactos
+  eliminarTarjetasContactos();
+  // Creo el loader
+   crearLoaderRing("divContactos");
+}
+
+// ********************************* [ Mostrar ]*******************************
+function mostrar(){
+  if(VistaActual == "Tabla") crearTablaContactos();
+  if(VistaActual == "Tarjetas") crearTarjetasContactos();
+  eliminarLoader();
+}
+
+// ********************************* [ Boton para subir al principio de la pagina ]*******************************
+ window.addEventListener("scroll",function(){
+   if(this.window.scrollY > 500){
+     document.getElementById("btnGoUp").style.transform = "scale(1)";
+   }
+   if(this.window.scrollY < 500){
+     document.getElementById("btnGoUp").style.transform = "scale(0)";
+   }
+ });
+
+ function goUp(){
+   document.body.scrollTop = 0;
+   document.documentElement.scrollTop = 0;
+ }
+</script>

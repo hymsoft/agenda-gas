@@ -1,0 +1,49 @@
+<script>
+// ********************************* [ Modales ]*******************************
+
+  function abrirModalNuevoContacto() {
+    // Busco el boton submit del formulario en el modal
+    let btnNuevoContacto = document.getElementById("btnCrearModificar");
+    // Le cambio el texto
+    btnNuevoContacto.textContent = "Guardar";
+    btnNuevoContacto.classList = "";
+    btnNuevoContacto.classList.add("btn", "btn-success");
+    // Cambio el título del modal
+    document.getElementById("tituloModal").textContent = "Nuevo Contacto";
+    // Modifico el submit cambiando la funcion a ejectar
+    document.getElementById("frmContacto").onsubmit = () => insertarContacto();
+    // Cargo los datos en los inputs del formulario
+    document.getElementById("nombre").value = "";
+    document.getElementById("apellido").value = "";
+    document.getElementById("correo").value = "";
+    document.getElementById("telefono").value = "";
+    // Abro el modal
+    bootstrap.Modal.getOrCreateInstance(
+      document.getElementById("modalContacto")
+    ).show();
+  }
+
+  function abrirModalModificarContacto(nFila, datosContacto) {
+    // Busco el boton submit del formulario en el modal
+    let btnModificar = document.getElementById("btnCrearModificar");
+    // Le cambio el texto
+    btnModificar.textContent = "Modificar";
+    btnModificar.classList = "";
+    btnModificar.classList.add("btn", "btn-warning");
+    // Cambio el título del modal
+    document.getElementById("tituloModal").textContent = "Modificar Contacto";
+    // Modifico el submit cambiando la funcion a ejectar
+    document.getElementById("frmContacto").onsubmit = () =>
+      modificarContacto(nFila);
+    // Cargo los datos en los inputs del formulario
+    document.getElementById("nombre").value = datosContacto.nombre;
+    document.getElementById("apellido").value = datosContacto.apellido;
+    document.getElementById("correo").value = datosContacto.email;
+    document.getElementById("telefono").value = datosContacto.telefono;
+    // Abro el modal
+    bootstrap.Modal.getOrCreateInstance(
+      document.getElementById("modalContacto")
+    ).show();
+  }
+
+</script>
