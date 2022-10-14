@@ -1,6 +1,9 @@
 <script>
+  let estadoActual = "";
+
 // ********************************* [ Insertar contacto ]*******************************
   function insertarContacto() {
+    estadoActual = "Insertar";
     limpiar();
 
     // Cerrar el modal
@@ -8,7 +11,7 @@
       document.getElementById("modalContacto")
     ).hide();
 
-    let contacto = guardarDatosContacto();
+    let contacto = cargarDatosContacto();
     let archivo = document.getElementById("imagen").files[0];
 
     if(archivo) subirImagen(contacto,archivo);
@@ -20,34 +23,7 @@
     }
   }
 
-  function guardarDatosContacto(){
-    let contacto = {
-      nombre: document.getElementById("nombre").value,
-      apellido: document.getElementById("apellido").value,
-      correo: document.getElementById("correo").value,
-      telefono: document.getElementById("telefono").value,
-      imagen: document.getElementById("imgForm").src
-    }
-    return contacto;
-  }
-
-  function subirImagen(contacto,archivo){
-    let fr = new FileReader();
-    fr.readAsArrayBuffer(archivo);
-    fr.onload = function(){
-      let imagen = {
-        nombre: archivo.name,
-        tipo: archivo.type,
-        datos: Array.from(new Int8Array(this.result))
-      };
-    google.script.run
-      .withSuccessHandler(contactoInsertadoOK)
-      .withFailureHandler(contactoInsertadoError)
-      .insertarContacto(contacto, imagen);
-    }
-  }
-
-  function contactoInsertadoOK() {
+ function contactoInsertadoOK() {
     // Limpio datos del formulario
     document.getElementById("nombre").value = "";
     document.getElementById("correo").value = "";
@@ -63,22 +39,25 @@
     // ********************************* [ Modificar Contacto ]*******************************
 
   function modificarContacto(nFila) {
+    estadoActual = "Modificar";
     limpiar();
     // Cierro el modal
     bootstrap.Modal.getOrCreateInstance(
       document.getElementById("modalContacto")
     ).hide();
     // Obtengo los datos del formulario
-    let nombre = document.getElementById("nombre").value;
-    let apellido = document.getElementById("apellido").value;
-    let correo = document.getElementById("correo").value;
-    let telefono = document.getElementById("telefono").value;
+    let contacto = cargarDatosContacto();
+    contacto.fila = nFila;
 
-    // Modifico el contacto, si es ok, creo la tabla, sino, devuelvo error
-    google.script.run
+    let archivo = document.getElementById("imagen").files[0];
+
+    if(archivo) subirImagen(contacto,archivo);
+    else{
+     google.script.run
       .withSuccessHandler(contactoModificadoOk)
       .withFailureHandler(e => contactoModificadoError(e))
-      .modificarContacto(nFila, { nombre, apellido, correo, telefono });
+      .modificarContacto(contacto);
+    }
   }
 
   function contactoModificadoOk() {
@@ -139,6 +118,42 @@
     }
     columnas.push("OPCIONES");
     return columnas;
+  }
+
+ // ********************************* [ Cargar Datos Contacto ]*******************************
+   function cargarDatosContacto(){
+    let contacto = {
+      nombre: document.getElementById("nombre").value,
+      apellido: document.getElementById("apellido").value,
+      correo: document.getElementById("correo").value,
+      telefono: document.getElementById("telefono").value,
+      imagen: document.getElementById("imgForm").src
+    }
+    return contacto;
+  }
+
+  function subirImagen(contacto,archivo){
+    let fr = new FileReader();
+    fr.readAsArrayBuffer(archivo);
+    fr.onload = function(){
+      let imagen = {
+        nombre: archivo.name,
+        tipo: archivo.type,
+        datos: Array.from(new Int8Array(this.result))
+      };
+
+      if(estadoActual == "Insertar"){
+        google.script.run
+          .withSuccessHandler(contactoInsertadoOK)
+          .withFailureHandler(contactoInsertadoError)
+          .insertarContacto(contacto, imagen);
+      }else{
+        google.script.run
+        .withSuccessHandler(contactoModificadoOk)
+        .withFailureHandler(contactoModificadoError)
+        .modificarContacto(contacto, imagen);
+      }
+    }
   }
 
 </script>

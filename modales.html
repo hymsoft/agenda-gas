@@ -43,6 +43,8 @@
     document.getElementById("apellido").value = datosContacto.apellido;
     document.getElementById("correo").value = datosContacto.email;
     document.getElementById("telefono").value = datosContacto.telefono;
+    document.getElementById("imagen").value = "";
+    document.getElementById("imgForm").src = datosContacto.imagen;
     // Abro el modal
     bootstrap.Modal.getOrCreateInstance(
       document.getElementById("modalContacto")
