@@ -1,0 +1,42 @@
+<script>
+
+  function crearBotonInfoContacto(datosContacto){
+  let botonInfo = document.createElement("button");
+  botonInfo.id = "btnInfo" + datosContacto.fila;
+  botonInfo.classList.add("btn","btn-success","m-1");
+  botonInfo.onclick = () => mostrarInformacionAdicionalContacto(datosContacto);
+  // icono
+  let iconoInfo = document.createElement("i");
+  iconoInfo.classList.add("bi","bi-plus-square");
+  botonInfo.appendChild(iconoInfo);
+  // Devuelvo el boton
+  return botonInfo;
+}
+
+function crearBotonBorrarContacto(datosContacto){
+  let botonBorrar = document.createElement("button");
+  botonBorrar.id = "btnBorrar" + datosContacto.fila;
+  botonBorrar.classList.add("btn","btn-danger","m-1");
+  botonBorrar.onclick = () => borrarContacto(datosContacto.fila);
+  // icono
+  let iconoBorrar = document.createElement("i");
+  iconoBorrar.classList.add("bi","bi-trash");
+  botonBorrar.appendChild(iconoBorrar);
+  // Devuelvo el boton
+  return botonBorrar;
+}
+
+function crearBotonModificarContacto(datosContacto){
+  let botonModificar = document.createElement("button");
+  botonModificar.id = "btnBorrar" + datosContacto.fila;
+  botonModificar.classList.add("btn","btn-warning","m-1");
+  botonModificar.onclick = () => abrirModalModificarContacto(datosContacto);
+  // icono
+  let iconoModificar = document.createElement("i");
+  iconoModificar.classList.add("bi","bi-pencil");
+  botonModificar.appendChild(iconoModificar);
+  // Devuelvo el boton
+  return botonModificar;
+}
+
+</script>

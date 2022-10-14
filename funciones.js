@@ -18,7 +18,7 @@ function obtenerDatosHTML(nombre) {
   return HtmlService.createHtmlOutputFromFile(nombre).getContent();
 }
 
-function obtenerContactos() {
+function obtenerDatos() {
   // obtiene todo los datos de una hoja
   return HOJA.getDataRange().getValues();
 }

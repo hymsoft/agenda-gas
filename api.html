@@ -1,6 +1,7 @@
 <script>
    // ********************************* [ Importar contactos de api externa ]*******************************
   function importarContactos(){
+    limpiar()
     google.script.run
       .withSuccessHandler(contactoImportadoOk)
       .withFailureHandler(contactoImportadoError)
@@ -8,18 +9,12 @@
   }
 
   function contactoImportadoOk() {
-    limpiar();
-    // Mostrar notificacion
     crearNotificacionContacto("Contactos importados correctamente", "OK");
-    // Elimino el loader
-    crearTablaContactos();
+    mostrar();
   }
 
   function contactoImportadoError() {
-    limpiar();
-    // Mostrar notificacion de error
     crearNotificacionContacto("No se pudieron importar los contactos", "ERROR");
-    // Elimino el loader
-    crearTablaContactos();
+    mostrar();
   }
 </script>

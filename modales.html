@@ -23,7 +23,7 @@
     ).show();
   }
 
-  function abrirModalModificarContacto(nFila, datosContacto) {
+  function abrirModalModificarContacto(datosContacto) {
     // Busco el boton submit del formulario en el modal
     let btnModificar = document.getElementById("btnCrearModificar");
     // Le cambio el texto
@@ -34,7 +34,7 @@
     document.getElementById("tituloModal").textContent = "Modificar Contacto";
     // Modifico el submit cambiando la funcion a ejectar
     document.getElementById("frmContacto").onsubmit = () =>
-      modificarContacto(nFila);
+      modificarContacto(datosContacto.fila);
     // Cargo los datos en los inputs del formulario
     document.getElementById("nombre").value = datosContacto.nombre;
     document.getElementById("apellido").value = datosContacto.apellido;

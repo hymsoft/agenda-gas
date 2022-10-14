@@ -22,19 +22,12 @@
     // Limpio datos del formulario
     document.getElementById("nombre").value = "";
     document.getElementById("correo").value = "";
-    // Elimino la tabla
-    limpiar();
-    // Muestro el mensaje
     crearNotificacionContacto("Contacto insertado correctamente", "OK");
-    //Muestro la tabla
     mostrar();
-    // Elimino el loader
   }
 
   function contactoInsertadoError() {
-    // Mostrar notificacion de error
     crearNotificacionContacto("No se pudo insertar el contacto", "ERROR");
-    //Muestro la tabla
     mostrar();
   }
 
@@ -60,17 +53,11 @@
   }
 
   function contactoModificadoOk() {
-    eliminarTablaContactos();
-    // Mostrar notificacion
     crearNotificacionContacto("Contacto modificado correctamente", "OK");
     mostrar();
   }
 
   function contactoModificadoError(error) {
-    console.log(error);
-    console.log("Entre");
-    eliminarTablaContactos();
-    // Mostrar notificacion de error
     crearNotificacionContacto("No se pudo modificar el contacto", "ERROR");
     mostrar();
   }
@@ -88,17 +75,41 @@
   }
 
   function contactoBorradoOk() {
-    eliminarTablaContactos();
-    // Mostrar notificacion
     crearNotificacionBorrar("Contacto eliminado correctamente", "OK");
     mostrar();
   }
 
   function contactoBorradoError() {
-    eliminarTablaContactos();
-    // Mostrar notificacion de error
     crearNotificacionBorrar("No se pudo borrar el contacto", "ERROR");
     mostrar();
+  }
+
+  // ********************************* [ Extraer Contactos ]*******************************
+  function extraerContactos(datos){
+    let contactos = [];
+    for(let i = 1;i<datos.length;i++){
+      let contacto = {
+        nombre: datos[i][0],
+        apellido: datos[i][1],
+        email: datos[i][2],
+        telefono: datos[i][3],
+        imagen: datos[i][4],
+        fila: i+1
+      }
+      contactos.push(contacto);
+    }
+    return contactos;
+  }
+
+  
+  // ********************************* [ Extraer columnas ]*******************************
+  function extraerColumnas(datos){
+    let columnas = [];
+    for(let i = 0;i<datos[0].length;i++){
+      columnas.push(datos[0][i]);
+    }
+    columnas.push("OPCIONES");
+    return columnas;
   }
 
 </script>
