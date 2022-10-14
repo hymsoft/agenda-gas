@@ -35,28 +35,19 @@
   <!-- Fin Botones Superiores -->
 
   <!-- Tabla de contactos -->
-  <div
-    class="container col-12 mb-4 d-flex justify-content-center"
-    id="divContactos"
-  ></div>
+  <div class="container col-12 mb-4 d-flex justify-content-center" id="divContactos"></div>
   <!-- Fin tabla de contactos -->
 
   <!-- Notificaciones -->
   <div class="toast-container position-fixed bottom-0 end-0 p-3" id="contenedorNotificaciones">
     <!-- Toast -->
-    
-    </div>
+
+  </div>
   </div>
   <!-- fin Notificaciones -->
 
   <!-- Modal -->
-  <div
-    class="modal fade"
-    id="modalContacto"
-    tabindex="-1"
-    aria-labelledby="tituloModal"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="modalContacto" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
     <div class="modal-lg modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -66,55 +57,39 @@
         <!-- Formulario -->
         <form onsubmit="insertarContacto()" method="dialog" id="frmContacto">
           <div class="modal-body">
-            <!-- Nombre y Apellido -->
             <div class="row mb-3">
-              <div class="col-6">
-                <label for="nombre" class="form-label">Nombre:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="nombre"
-                  id="nombre"
-                  pattern="[\D]*"
-                  title="El nombre no puede contener números"
-                  required
-                />
+              <!-- Parte Izquierda -->
+              <div class="col-6 d-flex flex-column">
+                <!-- Nombre -->
+                <div class="mb-2">
+                  <label for="nombre" class="form-label">Nombre:</label>
+                  <input type="text" class="form-control" name="nombre" id="nombre" pattern="[\D]*" title="El nombre no puede contener números" required />
+                </div>
+                <!-- Apellido -->
+                <div class="mb-2">
+                  <label for="apellido" class="form-label">Apellido:</label>
+                  <input type="text" class="form-control" name="apellido" id="apellido" pattern="[\D]*" title="El apellido no puede contener números" required />
+                </div>
+                <!-- Correo -->
+                <div class="mb-2 input-group">
+                  <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                  <input type="email" class="form-control" name="correo" id="correo" required />
+                </div>
+                <!-- Telefono -->
+                <div class="mb-2 input-group">
+                  <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
+                  <input type="tel" class="form-control" name="telefono" id="telefono" required />
+                </div>
+                <!-- Archivo imagen -->
+                <div class="mb-2">
+                  <label for="imagen" class="form-label">Imagen Contacto</label>
+                  <input type="file" accept="imagen/*" class="form-control" name="imagen" id="imagen">
+                </div>
               </div>
-              <div class="col-6">
-                <label for="apellido" class="form-label">Apellido:</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="apellido"
-                  id="apellido"
-                  pattern="[\D]*"
-                  title="El apellido no puede contener números"
-                  required
-                />
+              <!-- Parte derecha -->
+              <div class="col-6 d-flex justify-content-center align-items-center p-0">
+                <img class="img-fluid img-form" id="imgForm" alt="Imagen de contacto">
               </div>
-            </div>
-            <!-- Correo y teléfono -->
-            <div class="input-group mb-3">
-              <span class="input-group-text"
-                ><i class="bi bi-envelope-fill"></i
-              ></span>
-              <input
-                type="email"
-                class="form-control me-4"
-                name="correo"
-                id="correo"
-                required
-              />
-              <span class="input-group-text"
-                ><i class="bi bi-telephone-fill"></i
-              ></span>
-              <input
-                type="tel"
-                class="form-control"
-                name="telefono"
-                id="telefono"
-                required
-              />
             </div>
           </div>
           <div class="modal-footer">

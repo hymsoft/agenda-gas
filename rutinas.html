@@ -1,6 +1,22 @@
 <script>
+  let VistaActual = "";
 
-let VistaActual = "";
+// ********************************* [ Eventos ]*******************************
+ // Boton Subir
+ window.addEventListener("scroll",function(){
+   if(this.window.scrollY > 500){
+     document.getElementById("btnGoUp").style.transform = "scale(1)";
+   }
+   if(this.window.scrollY < 500){
+     document.getElementById("btnGoUp").style.transform = "scale(0)";
+   }
+ });
+  
+  // Cargar imagen
+  document.getElementById("imagen").addEventListener("change", function(){
+    document.getElementById("imgForm").src = URL.createObjectURL(this.files[0]);
+  })
+
 
 // ********************************* [ Limpiar ]*******************************
 function limpiar(){
@@ -20,15 +36,6 @@ function mostrar(){
 }
 
 // ********************************* [ Boton para subir al principio de la pagina ]*******************************
- window.addEventListener("scroll",function(){
-   if(this.window.scrollY > 500){
-     document.getElementById("btnGoUp").style.transform = "scale(1)";
-   }
-   if(this.window.scrollY < 500){
-     document.getElementById("btnGoUp").style.transform = "scale(0)";
-   }
- });
-
  function goUp(){
    document.body.scrollTop = 0;
    document.documentElement.scrollTop = 0;

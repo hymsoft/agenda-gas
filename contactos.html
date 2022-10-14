@@ -2,20 +2,49 @@
 // ********************************* [ Insertar contacto ]*******************************
   function insertarContacto() {
     limpiar();
-    // Obtengo los datos del formulario
-    let nombre = document.getElementById("nombre").value;
-    let apellido = document.getElementById("apellido").value;
-    let correo = document.getElementById("correo").value;
-    let telefono = document.getElementById("telefono").value;
+
     // Cerrar el modal
     bootstrap.Modal.getInstance(
       document.getElementById("modalContacto")
     ).hide();
-    // Obtengo los contactos, si es ok, creo la tabla, sino, devuelvo error
+
+    let contacto = guardarDatosContacto();
+    let archivo = document.getElementById("imagen").files[0];
+
+    if(archivo) subirImagen(contacto,archivo);
+    else{
+      google.script.run
+        .withSuccessHandler(contactoInsertadoOK)
+        .withFailureHandler(contactoInsertadoError)
+        .insertarContacto(contacto);
+    }
+  }
+
+  function guardarDatosContacto(){
+    let contacto = {
+      nombre: document.getElementById("nombre").value,
+      apellido: document.getElementById("apellido").value,
+      correo: document.getElementById("correo").value,
+      telefono: document.getElementById("telefono").value,
+      imagen: document.getElementById("imgForm").src
+    }
+    return contacto;
+  }
+
+  function subirImagen(contacto,archivo){
+    let fr = new FileReader();
+    fr.readAsArrayBuffer(archivo);
+    fr.onload = function(){
+      let imagen = {
+        nombre: archivo.name,
+        tipo: archivo.type,
+        datos: Array.from(new Int8Array(this.result))
+      };
     google.script.run
       .withSuccessHandler(contactoInsertadoOK)
       .withFailureHandler(contactoInsertadoError)
-      .insertarContacto(nombre, apellido, correo, telefono);
+      .insertarContacto(contacto, imagen);
+    }
   }
 
   function contactoInsertadoOK() {
