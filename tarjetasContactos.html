@@ -103,12 +103,21 @@ function crearImagenTarjeta(datosContacto){
   let imagenTarjeta = document.createElement("div");
   imagenTarjeta.classList.add("col-6","rounded","d-flex","justify-content-end");
   let cajaImagenTarjeta = document.createElement("div");
-  cajaImagenTarjeta.classList.add("box","border","border-3","border-dark","rounded");
+  cajaImagenTarjeta.classList.add("box","rounded","d-flex","justify-content-center","align-items-center","img-contacto-tarjeta");
   let imagenContacto = document.createElement("img");
-  imagenContacto.classList.add("img-fluid","rounded","img-contacto-tarjeta");
+  imagenContacto.classList.add("img-fluid","rounded","img-contacto-tarjeta","border","border-3","border-dark");
   imagenContacto.src = datosContacto.imagen;
+  imagenContacto.style.display = "none";
+
   cajaImagenTarjeta.appendChild(imagenContacto);
   imagenTarjeta.appendChild(cajaImagenTarjeta);
+  // Creo el icono de carga
+  let loader = crearLoaderImagen(cajaImagenTarjeta);
+  // Evento al finalizar la carga
+  imagenContacto.onload = () => {
+    loader.remove();
+    imagenContacto.style.display = "inline";
+  }
 
   return imagenTarjeta; 
 }

@@ -94,6 +94,13 @@
     let imagen = document.createElement("img");
     imagen.classList.add("img-fluid","rounded","img-contacto-tabla");
     imagen.src = rutaImagen;
+    imagen.style.display = "none";
+
+    let loader = crearLoaderImagen(celda)
+    imagen.onload = () => {
+      loader.remove();
+      imagen.style.display = "inline";
+    }
     celda.appendChild(imagen);
     return celda;
   }
