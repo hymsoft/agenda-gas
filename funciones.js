@@ -48,3 +48,21 @@ function eliminarContacto(nFila) {
   HOJA.deleteRow(nFila);
 }
 
+function importarContactos(){
+  let url = "https://randomuser.me/api/?results=5&nat=es&inc=name,email,phone,picture";
+  let respuesta = UrlFetchApp.fetch(url).getContentText();
+  let datos = JSON.parse(respuesta);
+  datos.results.forEach(contacto => insertarContactoImportado(contacto));
+}
+
+function insertarContactoImportado(contacto){
+  let contactoImportado = {
+    nombre: contacto.name.first,
+    apellido: contacto.name.last,
+    correo: contacto.email,
+    telefono: contacto.phone,
+    imagen: contacto.picture.large
+  }
+  insertarContacto(contactoImportado);
+}
+
