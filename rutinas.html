@@ -17,6 +17,31 @@
     document.getElementById("imgForm").src = URL.createObjectURL(this.files[0]);
   })
 
+  // Dragover
+  document.getElementById("imgForm").addEventListener("dragover", function(event){
+    event.preventDefault();
+    this.style.filter = "opacity(0%)";
+    document.getElementById("cajaIconoForm").style.display = "flex";
+  });
+
+  // Dragleave
+  document.getElementById("imgForm").addEventListener("dragleave", function(event){
+    this.style.filter = "opacity(100%)";
+    document.getElementById("cajaIconoForm").style.display = "none";
+  });
+
+  // Drop
+  document.getElementById("imgForm").addEventListener("drop", function(event){
+    event.preventDefault();
+    let archivos = event.dataTransfer.files;
+    // Paso los archivos al input
+    document.getElementById("imagen").files = archivos;
+    // Muestro la imagen
+    document.getElementById("imgForm").src = URL.createObjectURL(archivos[0]);
+    this.style.filter = "opacity(100%)";
+    document.getElementById("cajaIconoForm").style.display = "none";
+  });
+
 
 // ********************************* [ Limpiar ]*******************************
 function limpiar(){
