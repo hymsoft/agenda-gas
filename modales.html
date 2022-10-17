@@ -51,4 +51,16 @@
     ).show();
   }
 
+  function abrirModalInfoContacto(datosContacto){
+    //obtener datos contactos
+    document.getElementById("nombreInfoContacto").textContent = datosContacto.nombre + " " + datosContacto.apellido;
+    document.getElementById("correoInfoContacto").textContent = datosContacto.email;
+    document.getElementById("telefonoInfoContacto").textContent = datosContacto.telefono;
+    document.getElementById("imagenInfoContacto").src = datosContacto.imagen;
+    // Abro el modal
+    bootstrap.Modal.getOrCreateInstance(
+      document.getElementById("infoModalcontacto")
+    ).show();
+  }
+
 </script>
