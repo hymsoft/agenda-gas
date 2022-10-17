@@ -194,9 +194,26 @@
   /* End Imagen Contacto */
 
   /* Formularios */
+
+  .div-datos-form{
+    height: 20rem;
+    width: 20rem;
+    margin: 1rem;
+  }
+
+  .div-img-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 20rem;
+    width: 20rem;
+  }
+
   .img-form{
     position: absolute;
-    height: 18rem;
+    height: 20rem;
+    width: 20rem;
     border: 1px solid black;
     border-radius: .5rem;
     object-fit: cover;
@@ -213,10 +230,28 @@
     z-index: 1;
   }
 
+  .lottie-form{
+    position: absolute;
+    height: 20rem;
+    width: 20rem;
+    border: .4rem dashed green;
+    display: none;
+    z-index: 1;
+  }
+
   .icono-img-form{
     font-size: 10rem;
     color: green;
     animation: animacion-drag-and-drop 3s infinite;
+  }
+
+  .icono-form{
+    position: absolute;
+    z-index: 3;
+    color: var(--color-amarillo-claro);
+    font-size: 1.5rem;
+    right: 0rem;
+    top: 0rem;
   }
 
   @keyframes animacion-drag-and-drop{

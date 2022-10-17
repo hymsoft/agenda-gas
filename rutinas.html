@@ -21,13 +21,15 @@
   document.getElementById("imgForm").addEventListener("dragover", function(event){
     event.preventDefault();
     this.style.filter = "opacity(0%)";
-    document.getElementById("cajaIconoForm").style.display = "flex";
+    // document.getElementById("cajaIconoForm").style.display = "flex";
+    document.getElementById("lottieForm").style.display = "flex";
   });
 
   // Dragleave
   document.getElementById("imgForm").addEventListener("dragleave", function(event){
     this.style.filter = "opacity(100%)";
-    document.getElementById("cajaIconoForm").style.display = "none";
+    // document.getElementById("cajaIconoForm").style.display = "none";
+    document.getElementById("lottieForm").style.display = "none";
   });
 
   // Drop
@@ -39,7 +41,8 @@
     // Muestro la imagen
     document.getElementById("imgForm").src = URL.createObjectURL(archivos[0]);
     this.style.filter = "opacity(100%)";
-    document.getElementById("cajaIconoForm").style.display = "none";
+    // document.getElementById("cajaIconoForm").style.display = "none";
+    document.getElementById("lottieForm").style.display = "none";
   });
 
 
@@ -67,4 +70,10 @@ function mostrar(){
    document.body.scrollTop = 0;
    document.documentElement.scrollTop = 0;
  }
+
+// ********************************* [ PopOver ]*******************************
+  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+  var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+  return new bootstrap.Popover(popoverTriggerEl)
+})
 </script>

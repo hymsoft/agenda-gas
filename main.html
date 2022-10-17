@@ -5,32 +5,44 @@
     <button
       type="button"
       class="btn btn-success m-2"
-      title="Mostrar contactos como tarjetas"
       onclick="crearTarjetasContactos()"
+      data-bs-toggle="popover" 
+      data-bs-placement="bottom"
+      data-bs-trigger="hover"
+      data-bs-content="Mostrar contactos como tarjetas"
     >
       <i class="bi bi-postcard"></i>
     </button>
     <button
       type="button"
       class="btn btn-success m-2"
-      title="Mostrar contactos como lista"
       onclick="crearTablaContactos()"
+      data-bs-toggle="popover" 
+      data-bs-placement="bottom"
+      data-bs-trigger="hover"
+      data-bs-content="Mostrar contactos como lista"
     >
       <i class="bi bi-table"></i>
     </button>
     <button
       type="button"
       class="btn btn-primary m-2"
-      title="Agregar contacto"
       onclick="abrirModalNuevoContacto()"
+      data-bs-toggle="popover" 
+      data-bs-placement="bottom"
+      data-bs-trigger="hover"
+      data-bs-content="Agregar un nuevo contacto"
     >
       <i class="bi bi-person-plus"></i>
     </button>
     <button
       type="button"
       class="btn btn-warning m-2"
-      title="Agregar 5 contactos aleatorios"
       onclick="importarContactos()"
+      data-bs-toggle="popover" 
+      data-bs-placement="bottom"
+      data-bs-trigger="hover"
+      data-bs-content="Agrega 5 contactos aleatorios, usando un api externo de terceros."
     >
       +5
     </button>
@@ -61,10 +73,10 @@
         <!-- Formulario -->
         <form onsubmit="insertarContacto()" method="dialog" id="frmContacto">
           <div class="modal-body">
-            <div class="row mb-3">
-              
+            <div class="mb-3 d-flex justify-content-center align-items-center flex-wrap">
+
               <!-- Parte Izquierda -->
-              <div class="col-6 d-flex flex-column">
+              <div class="div-datos-form">
                 <!-- Nombre -->
                 <div class="mb-2">
                   <label for="nombre" class="form-label">Nombre:</label>
@@ -91,12 +103,19 @@
                   <input type="file" accept="imagen/*" class="form-control" name="imagen" id="imagen">
                 </div>
               </div>
-             
+
               <!-- Parte derecha -->
-              <div class="col-6 d-flex justify-content-center align-items-center p-0 position-relative">
+              <div class="div-img-form">
+                <i class="icono-form bi bi-question-circle-fill btn" data-bs-toggle="popover" data-bs-content= "Se recomiendan imagenes cuadradas para una mejor visualización. De lo contrario parte de la imagen será recortada. Resolución recomendada: 320x320px" data-bs-trigger= "hover"></i>
                 <img class="img-fluid img-form" id="imgForm" alt="Imagen de contacto">
-                <div class="caja-icono-form container-fluid" id="cajaIconoForm">
+                <!-- Para usar con un icono -->
+                <!-- <div class="caja-icono-form container-fluid" id="cajaIconoForm">
                   <i class="icono-img-form bi bi-cloud-plus"></i>
+                </div> -->
+                <!-- Para usar con un lottie -->
+                <div class="lottie-form" id="lottieForm">
+                  <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_z7DhMX.json" speed="1" loop
+                    autoplay>
                 </div>
               </div>
             </div>
