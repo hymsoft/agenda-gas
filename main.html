@@ -5,6 +5,18 @@
     <button
       type="button"
       class="btn btn-success m-2"
+      onclick="crearTarjetasContactosCuadradas()"
+      data-bs-toggle="popover"
+      data-bs-placement="bottom"
+      data-bs-trigger="hover"
+      data-bs-content="Crear tarjetas cuadradas"
+    >
+      <i class="bi bi-person-badge"></i>
+    </button>
+
+    <button
+      type="button"
+      class="btn btn-success m-2"
       onclick="crearTarjetasContactos()"
       data-bs-toggle="popover"
       data-bs-placement="bottom"
@@ -15,7 +27,7 @@
     </button>
     <button
       type="button"
-      class="btn btn-success m-2"
+      class="btn btn-secondary m-2"
       onclick="crearTablaContactos()"
       data-bs-toggle="popover"
       data-bs-placement="bottom"
@@ -167,7 +179,7 @@
 
             <!-- Parte Inferior -->
             <div class="m-3">
-              <img src="" alt="Vista previa de la imagen del contacto." id="imagenInfoContacto" class="border border-4 border-dark rounded">
+              <img src="" alt="Vista previa de la imagen del contacto." id="imagenInfoContacto" class="img-fluid border border-4 border-dark rounded img-info-contacto">
             </div>
             <!-- Fin Parte Inferior -->
           </div>
@@ -186,4 +198,28 @@
     </div>
   </div>
   <!-- Fin Info contacto -->
+
+  <!-- Templates -->
+  <!-- Contactos cuadrados -->
+  <template id="plantillaContactosCuadrados">
+    <div id="plantillaLoader" class="my-5 mx-2 plantilla-loader">
+      <p>Cargando imagen...</p>
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+
+    <div id="plantillaNumero" class="my-5 mx-2">
+      <div class="caja-contacto">
+        <img id="plantillaImagen" alt="Imagen del contacto" class="img-fluid">
+        <div class="datos-contacto">
+          <h3 id="plantillaNombre"></h3>
+          <span>
+            <a id="btnPlantillaInfo" class="boton-caja btn btn-success"><i class="bi bi-plus-square"></i></a>
+            <a id="btnPlantillaEditar" class="boton-caja btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+            <a id="btnPlantillaBorrar" class="boton-caja btn btn-danger"><i class="bi bi-trash"></i></a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </template>
+  <!-- Fin Contactos cuadrados -->
 </main>

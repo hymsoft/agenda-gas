@@ -124,9 +124,9 @@ function crearImagenTarjeta(datosContacto){
 
 function crearTarjetaContactosError(){
   // Mostrar notificacion de error
-    crearNotificacionOK("No se pudieron obtener los contactos", "ERROR");
-    // Elimino el loader
-    eliminarLoader();
+  crearNotificacionError("No se pudieron obtener los contactos", "ERROR");
+  // Elimino el loader
+  eliminarLoader();
 }
 
 // ********************************* [ eliminar Tarjetas ]*******************************

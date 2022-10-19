@@ -1,0 +1,60 @@
+<script>
+  function crearTarjetasContactosCuadradas(){
+    limpiar();
+    // Obtengo los contactos, si es ok, creo la tabla, sino, devuelvo error
+    google.script.run
+      .withSuccessHandler(crearTarjetaContactosCuadradasOK)
+      .withFailureHandler(crearTarjetaContactosCuadradasError)
+      .obtenerDatos();
+  }
+
+  function crearTarjetaContactosCuadradasOK(datos){
+    VistaActual = "TarjetasCuadradas";
+    let contactos = extraerContactos(datos);
+    // Contenedor de tarjetas
+    let contenedorTarjetasContacto = document.createElement("div");
+    contenedorTarjetasContacto.id = "tarjetasContactos";
+    contenedorTarjetasContacto.classList.add("d-flex","justify-content-center","flex-wrap");
+    // Por cada contacto creo una tarjeta
+    contactos.forEach(contacto => contenedorTarjetasContacto.appendChild(crearTarjetaContactoCuadrada(contacto)));
+
+    // Agrego todas las tarjetas al main
+    document.getElementById("divContactos").appendChild(contenedorTarjetasContacto);
+    // Elimino el loader
+    eliminarLoader();
+  }
+
+  function crearTarjetaContactoCuadrada(contacto){
+    let plantilla = document.getElementById("plantillaContactosCuadrados");
+    let copia = document.importNode(plantilla.content,true);
+
+    copia.getElementById("plantillaNumero").id = "tarjeta"+contacto.fila;
+    copia.getElementById("plantillaNombre").textContent = contacto.nombre + " " + contacto.apellido;
+    copia.getElementById("plantillaImagen").src = contacto.imagen;
+
+    //Botones
+    copia.getElementById("btnPlantillaInfo").onclick = () => abrirModalInfoContacto(contacto);
+    copia.getElementById("btnPlantillaEditar").onclick = () => abrirModalModificarContacto(contacto);
+    copia.getElementById("btnPlantillaBorrar").onclick = () => borrarContacto(contacto.fila);
+
+    let loader = copia.getElementById("plantillaLoader");
+    let tarjeta = copia.getElementById("tarjeta"+contacto.fila);
+
+    tarjeta.style.display = "none";
+
+    // Cuando se termina de cargar la imagen
+    copia.getElementById("plantillaImagen").onload = () => {
+      loader.remove();
+      tarjeta.style.display = "inline";
+    }
+
+    return copia;
+  }
+
+  function crearTarjetaContactosCuadradasError(){
+    // Mostrar notificacion de error
+    crearNotificacionError("No se pudieron obtener los contactos", "ERROR");
+    // Elimino el loader
+    eliminarLoader();
+  }
+</script>
