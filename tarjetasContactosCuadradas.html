@@ -16,7 +16,9 @@
     contenedorTarjetasContacto.id = "tarjetasContactos";
     contenedorTarjetasContacto.classList.add("d-flex","justify-content-center","flex-wrap");
     // Por cada contacto creo una tarjeta
-    contactos.forEach(contacto => contenedorTarjetasContacto.appendChild(crearTarjetaContactoCuadrada(contacto)));
+    // contactos.forEach(contacto => contenedorTarjetasContacto.appendChild(crearTarjetaContactoCuadrada(contacto)));
+    contactos.forEach(contacto => contenedorTarjetasContacto.innerHTML += crearContactosHTMLEstilo5(contacto));
+    
 
     // Agrego todas las tarjetas al main
     document.getElementById("divContactos").appendChild(contenedorTarjetasContacto);

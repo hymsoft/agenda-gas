@@ -1,17 +1,10 @@
 <link href="https://fonts.cdnfonts.com/css/janda-manatee-solid" rel="stylesheet">
 <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
-  crossorigin="anonymous"
-/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
 
 <style>
   :root {
@@ -27,12 +20,12 @@
     --color-gris-oscuro: #515A5A;
   }
 
-  body{
+  body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Janda Manatee Solid', sans-serif;
-                                                
+
   }
 
   header {
@@ -171,7 +164,7 @@
   /* Final Loader */
 
   /* Boton TOP */
-  .go-up{
+  .go-up {
     background-color: var(--color-gris-claro);
     position: fixed;
     transition: all .4s ease-in-out;
@@ -180,31 +173,33 @@
     right: 1%;
     z-index: 10;
   }
+
   /* End boton TOP */
 
   /* Imagen contacto */
-  .img-contacto-tarjeta{
-    object-fit:cover;
+  .img-contacto-tarjeta {
+    object-fit: cover;
     height: 9rem;
     width: 9rem;
   }
 
-  .img-contacto-tabla{
-    object-fit:cover;
+  .img-contacto-tabla {
+    object-fit: cover;
     height: 4rem;
     width: 4rem;
   }
+
   /* End Imagen Contacto */
 
   /* Formularios */
 
-  .div-datos-form{
+  .div-datos-form {
     height: 20rem;
     width: 20rem;
     margin: 1rem;
   }
 
-  .div-img-form{
+  .div-img-form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -213,7 +208,7 @@
     width: 20rem;
   }
 
-  .img-form{
+  .img-form {
     position: absolute;
     height: 20rem;
     width: 20rem;
@@ -223,7 +218,7 @@
     z-index: 2;
   }
 
-  .caja-icono-form{
+  .caja-icono-form {
     position: absolute;
     height: 18rem;
     border: .4rem dashed green;
@@ -233,7 +228,7 @@
     z-index: 1;
   }
 
-  .lottie-form{
+  .lottie-form {
     position: absolute;
     height: 20rem;
     width: 20rem;
@@ -242,13 +237,13 @@
     z-index: 1;
   }
 
-  .icono-img-form{
+  .icono-img-form {
     font-size: 10rem;
     color: green;
     animation: animacion-drag-and-drop 3s infinite;
   }
 
-  .icono-form{
+  .icono-form {
     position: absolute;
     z-index: 3;
     color: var(--color-amarillo-claro);
@@ -257,41 +252,52 @@
     top: 0rem;
   }
 
-  @keyframes animacion-drag-and-drop{
-    0% {font-size: 10rem;}
-    50% {font-size: 9rem;}
-    100% {font-size: 10rem;}
+  @keyframes animacion-drag-and-drop {
+    0% {
+      font-size: 10rem;
+    }
+
+    50% {
+      font-size: 9rem;
+    }
+
+    100% {
+      font-size: 10rem;
+    }
   }
+
   /* End Formularios */
 
   /* Modal Info Contacto */
-  .boton-copiar{
+  .boton-copiar {
     margin-left: auto;
     font-size: 1.5rem;
     cursor: pointer;
   }
-  
-  .boton-copiar:hover{
+
+  .boton-copiar:hover {
     color: var(--color-verde-oscuro);
     transform: scale(1.2);
   }
 
-  .img-info-contacto{
+  .img-info-contacto {
     width: 16rem;
     height: 16rem;
     object-fit: cover;
   }
+
   /* End Modal Info Contacto */
 
   /* Estilos Adicionales */
-  .caja-contacto, .caja-contacto img{
+  .caja-contacto,
+  .caja-contacto img {
     position: relative;
     border: 0.3rem solid var(--color-gris-oscuro);
     border-radius: 0.3rem;
     background-color: var(--color-gris-oscuro);
   }
 
-  .datos-contacto{
+  .datos-contacto {
     position: absolute;
     padding: 0.5rem;
     background: black;
@@ -300,19 +306,19 @@
     bottom: 0;
   }
 
-  .datos-contacto h3{
+  .datos-contacto h3 {
     color: white;
     font-size: 1.5rem;
   }
 
-  .datos-contacto span{
+  .datos-contacto span {
     position: absolute;
     bottom: 0;
     right: 0;
     margin: 0.4rem;
   }
 
-  .caja-contacto img{
+  .caja-contacto img {
     z-index: 2;
     transition: all 0.5s;
     width: 16rem;
@@ -320,11 +326,11 @@
     object-fit: cover;
   }
 
-  .caja-contacto:hover img{
+  .caja-contacto:hover img {
     transform: translateY(-6rem);
   }
 
-  .plantilla-loader{
+  .plantilla-loader {
     width: 16rem;
     height: 16rem;
     display: flex;
@@ -336,12 +342,115 @@
     background-color: white;
   }
 
-  .boton-caja{
+  .boton-caja {
     transform: scale(1);
     transition: all 0.4s;
   }
 
-  .boton-caja:hover{
+  .boton-caja:hover {
     transform: translateY(10%);
   }
+
+  /* Estilos */
+  /* Estilo1 */
+  .caja-estilo-1 {}
+
+  /* Estilo2 */
+  .caja-estilo-2 .caja-contacto {
+    overflow: hidden;
+  }
+
+  /* Estilo3 */
+  .caja-estilo-3 .caja-contacto {
+    overflow: hidden;
+  }
+
+  .caja-estilo-3 .datos-contacto {
+    height: 100%;
+    width: 50%;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    transition: all 0.5s;
+  }
+
+  .caja-estilo-3 .caja-contacto:hover .datos-contacto {
+    transform: scaleX(1);
+    z-index: 2;
+  }
+
+  .caja-estilo-3 .caja-contacto:hover img {
+    transform: translateX(30%) scale(1.1);
+    filter: grayscale(100%);
+  }
+
+  /* Estilo4 */
+  .caja-estilo-4 .caja-contacto img {
+    z-index: 2;
+    transition: all 0.4s;
+  }
+
+  .caja-estilo-4 .datos-contacto {
+    height: 100%;
+    width: 100%;
+    border-radius: 0.3rem;
+    border: 0.3rem solid var(--color-gris-oscuro);
+    transition: all 0.4s;
+    background: linear-gradient(180deg, black 0%, #580900 100%);
+  }
+
+  .caja-estilo-4 .caja-contacto:hover img {
+    transform: scale(0.6);
+  }
+
+  .caja-estilo-4 .caja-contacto:hover .datos-contacto {
+    transform: scale(1.3);
+  }
+
+  /* Estilo5 */
+  .caja-estilo-5 .caja-contacto {
+    overflow: hidden;
+  }
+
+  .caja-estilo-5 .caja-contacto img {
+    transition: all 0.5s;
+  }
+
+  .caja-estilo-5 .caja-contacto:hover img {
+    transform: scale(1.2);
+    filter: grayscale 100%;
+  }
+
+  .caja-estilo-5 .datos-contacto{
+    width: 100%;
+    height: 100%;
+    background: none;
+    z-index: 2;
+  }
+
+  .caja-estilo-5 .btn{
+    transform: scale(0);
+  }
+
+  .caja-estilo-5 h3{
+    transform: scale(0);
+    text-shadow: 0.1rem 0.1rem black;
+  }
+
+  .caja-estilo-5 .caja-contacto:hover .btn,
+  .caja-estilo-5 .caja-contacto:hover h3{
+    transform: scale(1);
+  }
+
+  .caja-estilo-5 .caja-contacto:hover .btn:nth-child(1){
+    transition-delay: 0.3s;
+  }
+
+  .caja-estilo-5 .caja-contacto:hover .btn:nth-child(2){
+    transition-delay: 0.2s;
+  }
+
+  .caja-estilo-5 .caja-contacto:hover .btn:nth-child(3){
+    transition-delay: 0.1s;
+  }
+
 </style>
