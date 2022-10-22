@@ -9,16 +9,13 @@
   }
 
   function crearTarjetaContactosCuadradasOK(datos){
-    VistaActual = "TarjetasCuadradas";
     let contactos = extraerContactos(datos);
     // Contenedor de tarjetas
     let contenedorTarjetasContacto = document.createElement("div");
     contenedorTarjetasContacto.id = "tarjetasContactos";
     contenedorTarjetasContacto.classList.add("d-flex","justify-content-center","flex-wrap");
     // Por cada contacto creo una tarjeta
-    // contactos.forEach(contacto => contenedorTarjetasContacto.appendChild(crearTarjetaContactoCuadrada(contacto)));
-    contactos.forEach(contacto => contenedorTarjetasContacto.innerHTML += crearContactosHTMLEstilo5(contacto));
-    
+    contactos.forEach(contacto => contenedorTarjetasContacto.appendChild(crearTarjetaContactoCuadrada(contacto)))    
 
     // Agrego todas las tarjetas al main
     document.getElementById("divContactos").appendChild(contenedorTarjetasContacto);
@@ -27,7 +24,7 @@
   }
 
   function crearTarjetaContactoCuadrada(contacto){
-    let plantilla = document.getElementById("plantillaContactosCuadrados");
+    let plantilla = document.getElementById(estiloActual);
     let copia = document.importNode(plantilla.content,true);
 
     copia.getElementById("plantillaNumero").id = "tarjeta"+contacto.fila;

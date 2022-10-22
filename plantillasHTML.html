@@ -1,88 +1,111 @@
-<script>
+  <!-- Templates -->
+  <!-- Contactos cuadrados 1 -->
+  <template id="plantillaContactosCuadrados1">
+    <div id="plantillaLoader" class="my-5 mx-2 plantilla-loader">
+      <p>Cargando imagen...</p>
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
 
-  function crearContactosHTMLEstilo1(contacto){
-    return `
-    <div id='tarjeta${contacto.fila}' class='caja-estilo-1 my-5 mx-2'>
-      <div class='caja-contacto'>
-        <img src='${contacto.imagen}' alt='Imagen del contacto' class='img-fluid'>
-        <div class='datos-contacto'>
-          <h3>${contacto.nombre + ' ' + contacto.apellido}</h3>
+    <div id="plantillaNumero" class="caja-estilo-1 my-5 mx-2">
+      <div class="caja-contacto">
+        <img id="plantillaImagen" alt="Imagen del contacto" class="img-fluid">
+        <div class="datos-contacto">
+          <h3 id="plantillaNombre"></h3>
           <span>
-            <a onclick = 'abrirModalInfoContacto(${JSON.stringify(contacto)})' class='boton-caja btn btn-success'><i class='bi bi-plus-square'></i></a>
-            <a onclick = 'abrirModalModificarContacto(${JSON.stringify(contacto)})' class='boton-caja btn btn-warning'><i class='bi bi-pencil-square'></i></a>
-            <a onclick = 'borrarContacto(${contacto.fila})' class='boton-caja btn btn-danger'><i class='bi bi-trash'></i></a>
+            <a id="btnPlantillaInfo" class="boton-caja btn btn-success"><i class="bi bi-plus-square"></i></a>
+            <a id="btnPlantillaEditar" class="boton-caja btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+            <a id="btnPlantillaBorrar" class="boton-caja btn btn-danger"><i class="bi bi-trash"></i></a>
           </span>
         </div>
       </div>
-    </div>`;
-  }
+    </div>
+  </template>
  
-  function crearContactosHTMLEstilo2(contacto){
-    return `
-    <div id='tarjeta${contacto.fila}' class='caja-estilo-2 m-2'>
-      <div class='caja-contacto'>
-        <img src='${contacto.imagen}' alt='Imagen del contacto' class='img-fluid'>
-        <div class='datos-contacto'>
-          <h3>${contacto.nombre + ' ' + contacto.apellido}</h3>
+  <!-- Contactos cuadrados 2 -->
+  <template id="plantillaContactosCuadrados2">
+    <div id="plantillaLoader" class="m-2 plantilla-loader">
+      <p>Cargando imagen...</p>
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
+
+    <div id="plantillaNumero" class="caja-estilo-2 m-2">
+      <div class="caja-contacto">
+        <img id="plantillaImagen" alt="Imagen del contacto" class="img-fluid">
+        <div class="datos-contacto">
+          <h3 id="plantillaNombre"></h3>
           <span>
-            <a onclick = 'abrirModalInfoContacto(${JSON.stringify(contacto)})' class='boton-caja btn btn-success'><i class='bi bi-plus-square'></i></a>
-            <a onclick = 'abrirModalModificarContacto(${JSON.stringify(contacto)})' class='boton-caja btn btn-warning'><i class='bi bi-pencil-square'></i></a>
-            <a onclick = 'borrarContacto(${contacto.fila})' class='boton-caja btn btn-danger'><i class='bi bi-trash'></i></a>
+            <a id="btnPlantillaInfo" class="boton-caja btn btn-success"><i class="bi bi-plus-square"></i></a>
+            <a id="btnPlantillaEditar" class="boton-caja btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+            <a id="btnPlantillaBorrar" class="boton-caja btn btn-danger"><i class="bi bi-trash"></i></a>
           </span>
         </div>
       </div>
-    </div>`;
-  }
+    </div>
+  </template>
+ 
+  <!-- Contactos cuadrados 3 -->
+  <template id="plantillaContactosCuadrados3">
+    <div id="plantillaLoader" class="m-2 plantilla-loader">
+      <p>Cargando imagen...</p>
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
 
-   function crearContactosHTMLEstilo3(contacto){
-    return `
-    <div id='tarjeta${contacto.fila}' class='caja-estilo-3 m-2'>
-      <div class='caja-contacto'>
-        <img src='${contacto.imagen}' alt='Imagen del contacto' class='img-fluid'>
-        <div class='datos-contacto'>
-          <h3>${contacto.nombre + ' ' + contacto.apellido}</h3>
+    <div id="plantillaNumero" class="caja-estilo-3 m-2">
+      <div class="caja-contacto">
+        <img id="plantillaImagen" alt="Imagen del contacto" class="img-fluid">
+        <div class="datos-contacto">
+          <h3 id="plantillaNombre"></h3>
           <span class="d-flex flex-column m-2">
-            <a onclick = 'abrirModalInfoContacto(${JSON.stringify(contacto)})' class='m-1 boton-caja btn btn-success'><i class='bi bi-plus-square'></i></a>
-            <a onclick = 'abrirModalModificarContacto(${JSON.stringify(contacto)})' class='m-1 boton-caja btn btn-warning'><i class='bi bi-pencil-square'></i></a>
-            <a onclick = 'borrarContacto(${contacto.fila})' class='m-1 boton-caja btn btn-danger'><i class='bi bi-trash'></i></a>
+            <a id="btnPlantillaInfo" class="m-1 boton-caja btn btn-success"><i class="bi bi-plus-square"></i></a>
+            <a id="btnPlantillaEditar" class="m-1 boton-caja btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+            <a id="btnPlantillaBorrar" class="m-1 boton-caja btn btn-danger"><i class="bi bi-trash"></i></a>
           </span>
         </div>
       </div>
-    </div>`;
-  }
+    </div>
+  </template>
+ 
+  <!-- Contactos cuadrados 4 -->
+  <template id="plantillaContactosCuadrados4">
+    <div id="plantillaLoader" class="m-4 plantilla-loader">
+      <p>Cargando imagen...</p>
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
 
-  function crearContactosHTMLEstilo4(contacto){
-    return `
-    <div id='tarjeta${contacto.fila}' class='caja-estilo-4 m-4'>
-      <div class='caja-contacto'>
-        <img src='${contacto.imagen}' alt='Imagen del contacto' class='img-fluid'>
-        <div class='datos-contacto'>
-          <h3>${contacto.nombre + ' ' + contacto.apellido}</h3>
+    <div id="plantillaNumero" class="caja-estilo-4 m-4">
+      <div class="caja-contacto">
+        <img id="plantillaImagen" alt="Imagen del contacto" class="img-fluid">
+        <div class="datos-contacto">
+          <h3 id="plantillaNombre"></h3>
           <span>
-            <a onclick = 'abrirModalInfoContacto(${JSON.stringify(contacto)})' class='border border-2 border-white boton-caja btn btn-success'><i class='bi bi-plus-square'></i></a>
-            <a onclick = 'abrirModalModificarContacto(${JSON.stringify(contacto)})' class='border border-2 border-white boton-caja btn btn-warning'><i class='bi bi-pencil-square'></i></a>
-            <a onclick = 'borrarContacto(${contacto.fila})' class='border border-2 border-white boton-caja btn btn-danger'><i class='bi bi-trash'></i></a>
+            <a id="btnPlantillaInfo" class="border border-2 border-white boton-caja btn btn-success"><i class="bi bi-plus-square"></i></a>
+            <a id="btnPlantillaEditar" class="border border-2 border-white boton-caja btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+            <a id="btnPlantillaBorrar" class="border border-2 border-white boton-caja btn btn-danger"><i class="bi bi-trash"></i></a>
           </span>
         </div>
       </div>
-    </div>`;
-  }
+    </div>
+  </template>
+  
+  <!-- Contactos cuadrados 5 -->
+  <template id="plantillaContactosCuadrados5">
+    <div id="plantillaLoader" class="m-2 plantilla-loader">
+      <p>Cargando imagen...</p>
+      <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    </div>
 
-  function crearContactosHTMLEstilo5(contacto){
-    return `
-    <div id='tarjeta${contacto.fila}' class='caja-estilo-5 m-2'>
-      <div class='caja-contacto'>
-        <img src='${contacto.imagen}' alt='Imagen del contacto' class='img-fluid'>
-        <div class='datos-contacto'>
-          <h3>${contacto.nombre + ' ' + contacto.apellido}</h3>
+    <div id="plantillaNumero" class="caja-estilo-5 m-2">
+      <div class="caja-contacto">
+        <img id="plantillaImagen" alt="Imagen del contacto" class="img-fluid">
+        <div class="datos-contacto">
+          <h3 id="plantillaNombre"></h3>
           <span>
-            <a onclick = 'abrirModalInfoContacto(${JSON.stringify(contacto)})' class='border border-2 border-dark boton-caja btn btn-success'><i class='bi bi-plus-square'></i></a>
-            <a onclick = 'abrirModalModificarContacto(${JSON.stringify(contacto)})' class='border border-2 border-dark boton-caja btn btn-warning'><i class='bi bi-pencil-square'></i></a>
-            <a onclick = 'borrarContacto(${contacto.fila})' class='border border-2 border-dark boton-caja btn btn-danger'><i class='bi bi-trash'></i></a>
+            <a id="btnPlantillaInfo" class="border border-2 border-dark boton-caja btn btn-success"><i class="bi bi-plus-square"></i></a>
+            <a id="btnPlantillaEditar" class="border border-2 border-dark boton-caja btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+            <a id="btnPlantillaBorrar" class="border border-2 border-dark boton-caja btn btn-danger"><i class="bi bi-trash"></i></a>
           </span>
         </div>
       </div>
-    </div>`;
-  }
-
-</script>
+    </div>
+  </template>
+  <!-- Fin Contactos cuadrados -->
